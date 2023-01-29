@@ -1,0 +1,21 @@
+.portfolio-details .portfolio-description .btn-wrap {
+    padding: 15px;
+    text-align: center;
+  }
+  .portfolio-details .portfolio-description .btn-buy {
+    display: inline-block;
+    padding: 8px 40px 10px 40px;
+    border-radius: 50px;
+    border: 2px solid #e43c5c;
+    color: #e43c5c;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+    transition: 0.3s;
+  }
+  
+  .portfolio-details .portfolio-description .btn-buy:hover {
+    background: #e43c5c;
+    color: #fff;
+  }
