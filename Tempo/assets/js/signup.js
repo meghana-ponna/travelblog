@@ -16,21 +16,19 @@
 // {
 //   users=JSON.parse(users);
 // }
+console.log("hi")
 
-var exists=(email)=>{
-    console.log(email)
-    const arr=JSON.parse(localStorage.getItem("users"))
-    for(users of arr)
-    {
-        if(users.mail===email)
-        {
-            return true;
-        }
-    }
-    return  false;
-}
 $(document).ready(function(){
-    var users=localStorage.getItem('users');
+    function exists(email){
+        console.log("happy")
+        $.get("http://127.0.0.1:3000/users/"+email,function(data,textStatus,jqXHR){
+            console.log(data)
+            if(data=="found")
+            {
+                return true;
+            }
+            return false;  
+    })}
     $("#signup").click(function(){
             console.log("buttonclicked")
             const name=$("#firstname").val()
@@ -76,17 +74,27 @@ $(document).ready(function(){
        else if(password!==cnfpassword){
         $("#password").val("");
         $("#cnfpassword").val("")
-    
+        alert("password does not match")
         // document.getElementById("#password").placeholder="passwords not matched"
         // document.getElementById("#cnfpassword").placeholder="passwords not matched"
        }
-   else if(exists(email)){
-        alert("email alredy exist")
-      }
+    
     
        else{
         // users=JSON.parse(localStorage.getItem('users', JSON.stringify(users)));
         //  console.log("enter into else loop")
+        $.get("http://127.0.0.1:3000/users/"+email,function(data,textStatus,jqXHR){
+            console.log(data)
+            if(data=="found")
+            {
+                setTimeout(3000,()=>{
+
+                })
+                alert("email already exist")
+            }
+            else{
+
+          
         const data={name:name,password:password,mail:email,username:username,address:address,islogged:false}
         //  users.push(new_data)
         //   localStorage.setItem("users",JSON.stringify(users))
@@ -104,16 +112,18 @@ $(document).ready(function(){
             console.log(resposeText)
     
         })
-        window.open('login.html')
+        window.open('login.html',"_self")
     
           ///document.getElementsByClassName('signupFrm')[0].style.display='none'
     
-        
+        }
+
+    })
+
     
-       }
-    
-        })
-    });
+        }
+    })
+})
     
     
   

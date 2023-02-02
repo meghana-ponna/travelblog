@@ -41,9 +41,18 @@
         arr=JSON.parse(data)
         console.log(data)
         //container.innerHTML=""
-        //$("#places").html("")
+        $("#places").html("")
         for(place of arr){
-            $("#places").append("<div class='col-lg-4 col-md-6 portfolio-item filter-app'> <img src="+place.src+" class='img-fluid' alt=''><div class='portfolio-info'><h4>"+place.name+"</h4><a href="+place.src+" data-gallery='portfolioGallery' class='portfolio-lightbox preview-link' title='"+place.name+"'><i class='bx bx-plus'></i></a><button href='portfolio-details.html' class='btn btn-primary' title='More Details' id='"+place.name+"'>know more</i></button></div></div>")
+    //         $("#places").append(`<div class="col-lg-4 col-md-6 portfolio-item filter-app">
+    //  <img src=${place.src} class="img-fluid" alt="">
+    //         <div class="portfolio-info">
+    //           <h4>${place.name}</h4>
+    //           <a href=${place.src} data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title=${place.name}><i class="bx bx-plus"></i></a>
+    //           <a href="portfolio-details.html"+${place.name} class="details-link" title="More Details" ><i class="bx bx-link"></i></a>
+    //         </div>
+    //       </div>`)
+    $("#places").append("<div class='col-lg-4 col-md-6 portfolio-item filter-app'> <img src="+place.src+" class='img-fluid' alt=''><div class='portfolio-info'><h4>"+place.name+"</h4><a href="+place.src+" data-gallery='portfolioGallery' class='portfolio-lightbox preview-link' title='"+place.name+"'><i class='bx bx-plus'></i></a><a href='portfolio-details.html#"+place.name+"' class='details-link' title='More Details'><i class='bx bx-link'></i></a></div></div>")
+       
         }
         arr1=$("button")
          console.log(arr1)

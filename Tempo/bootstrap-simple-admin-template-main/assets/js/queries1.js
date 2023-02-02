@@ -1,23 +1,42 @@
+const itemsPerPg = 5;
+  let curPg = 1;
+  let endPg = 0;
 
-// const httpRequest=new XMLHttpRequest()
-// httpRequest.open('GET','http://127.0.0.1:3000/contact')
-// httpRequest.send()
-// httpRequest.onload=function()
-
-// {
-//     data=JSON.parse(this.responseText)
-
-//     for(user of data)
-//     {
-//   document.getElementById("tbody").innerHTML+="<tr> <td>"+user.name+"</td><td>"+user.email+"</td><td>"+user.subject+"</td><td>"+user.message+"</td></tr>"
-//  }
-// }
-
-$.get("http://127.0.0.1:3000/contact",function(data,textStatus,jqXHR){
+function pages(data,pgNum){
+  
+  $("#tbody").html("")
+  $("#number").html(pgNum)
+  curPg = pgNum;
+   let startIdx = (pgNum - 1) * itemsPerPg;
+    let endIdx = startIdx + itemsPerPg;
+    for (let i = startIdx; i < endIdx; i++) {
+      $("#tbody").append("<tr> <td>"+data[i].name+"</td><td>"+data[i].email+"</td><td>"+data[i].subject+"</td><td>"+data[i].message+"</td></tr>")
+    }
+  }
+     $.get("http://127.0.0.1:3000/contact",function(data,textStatus,jqXHR){
       data1=JSON.parse(data)
-      for(user of data1)
-      {
-        $("#tbody").append("<tr> <td>"+user.name+"</td><td>"+user.email+"</td><td>"+user.subject+"</td><td>"+user.message+"</td></tr>")
-      }
 
-});
+      console.log(data1)
+      let pdData = pages(data1, curPg);
+      $("#increase").click(function () {
+         curPg += 1;
+          let endPg = Math.ceil(data1.length / itemsPerPg);
+           if (endPg < curPg) {
+              curPg -= 1;
+             }
+              console.log(endPg - data1.length / itemsPerPg);
+              if (endPg - data1.length / itemsPerPg > 0) {
+               curPg = endPg;
+              }
+               pdData = pages(data1, curPg);
+             })
+              $("#decrease").click(function() {
+                 curPg -= 1;
+                 if (curPg < 1) {
+                   curPg = 1;
+                 }
+                  pdData = pages(data1, curPg);
+                  })
+      
+
+})

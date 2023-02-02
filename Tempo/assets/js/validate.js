@@ -5,6 +5,13 @@ $(document).ready(function(){
       const mailId=$("#typeEmailX").val()
       const passwd=$("#typePasswordX").val()
        console.log("button clicked")
+       if("admin@gmail.com"===mailId){
+        if("admin"===passwd){
+             window.open("/bootstrap-simple-admin-template-main/index.html")
+            
+            }
+               
+            }
     // let obj=JSON.parse(localStorage.getItem("users"))
     $.get("http://127.0.0.1:3000/users",function(data,textStatus,jqXHR){
       const data1=JSON.parse(data)
@@ -37,7 +44,7 @@ $(document).ready(function(){
             })
             // localStorage.setItem("users",JSON.stringify(obj2))
             console.log("hi")
-            window.open("index.html")
+            window.open("index.html","_self")
     }
 else{
     $("#typeEmailX").val("")
